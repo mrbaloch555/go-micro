@@ -99,7 +99,7 @@
       headers: headers,
     };
 
-    fetch("http://backend/handle", body)
+    fetch({{print .BrokerURL "/handle"}}, body)
       .then((response) => response.json())
       .then((data) => {
         sent.innerHTML = "empty post request";
@@ -120,7 +120,7 @@
       method: "POST",
     };
 
-    fetch("http://backend/", body)
+    fetch({{print .BrokerURL}}, body)
       .then((response) => response.json())
       .then((data) => {
         console.log("YEHAAAAAAAAAAA");
@@ -156,7 +156,7 @@
       headers,
     };
 
-    fetch("http://backend/handle", body)
+    fetch({{print .BrokerURL "/handle"}}, body)
       .then((response) => response.json())
       .then((data) => {
         sent.innerHTML = JSON.stringify(payload, undefined, 4);
@@ -192,7 +192,7 @@
       headers,
     };
 
-    fetch("http://backend/handle", body)
+    fetch({{print .BrokerURL "/handle"}}, body)
       .then((response) => response.json())
       .then((data) => {
         sent.innerHTML = JSON.stringify(payload, undefined, 4);
@@ -226,7 +226,7 @@
       headers: headers,
     };
 
-    fetch("http://backend/log-grpc", body)
+    fetch({{print .BrokerURL "/log-grpc"}}, body)
       .then((response) => response.json())
       .then((data) => {
         sent.innerHTML = "empty post request";

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbimq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbimq
+  template:
+    metadata:
+      labels:
+        app: rabbimq
+    spec:
+      containers:
+        - name: rabbimq
+          image: "rabbitmq:3.9-alpine"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5672
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbimq
+spec:
+  selector:
+    app: rabbimq
+  ports:
+    - protocol: TCP
+      name: main-port
+      port: 5672
+      targetPort: 5672
